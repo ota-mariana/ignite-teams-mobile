@@ -20,15 +20,15 @@ export function NewGroup() {
   async function handleNew() {
     try {
       if (group.trim().length === 0) {
-        return Alert.alert('Novo Time', 'Informe o nome do time.');
+        return Alert.alert('Nova Turma', 'Informe o nome da turma.');
       }
       await groupCreate(group)
       navigation.navigate('players', { group });
     } catch(error) {
       if (error instanceof AppError) {
-        Alert.alert('Novo Time', error.message);
+        Alert.alert('Nova Turma', error.message);
       } else {
-        Alert.alert('Novo Time', 'Não foi possível criar um novo time.');
+        Alert.alert('Nova Turma', 'Não foi possível criar uma nova turma.');
         console.log(error);
       }
     }
@@ -41,12 +41,12 @@ export function NewGroup() {
       <Content>
         <UsersIcon />
         <HighLight
-          title="Novo Time"
-          subtitle="Crie um time para adicionar pessoas"
+          title="Nova Turma"
+          subtitle="Crie uma turma para adicionar pessoas"
         />
       </Content>
 
-      <Input placeholder="Nome do time" onChangeText={setGroup} />
+      <Input placeholder="Nome da turma" onChangeText={setGroup} />
 
       <Button
         title="Criar"

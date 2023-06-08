@@ -41,7 +41,7 @@ export function Players() {
 	async function handleAddPlayer() {
 		if (newPlayerName.trim().length === 0) {
 			
-			return Alert.alert('Adicionar pessoa', 'Para adicionar uma pessoa é necessário informar o nome e sobrenome.')
+			return Alert.alert('Adicionar pessoa', 'Para adicionar uma pessoa é necessário informar o nome.')
 		}
 
 		const newPlayer = {
@@ -108,7 +108,7 @@ export function Players() {
 	async function handleGroupRemove() {
 		Alert.alert(
 			'Remover',
-			'Deseja realmente remover o grupo?',
+			'Deseja realmente remover essa turma?',
 			[
 				{ text: 'Não', style: 'cancel'},
 				{ text: 'Sim', onPress: () => groupRemove() }
@@ -183,7 +183,7 @@ export function Players() {
 
 
 			<Button
-				title='Remover Turma'
+				title='Remover turma'
 				type='SECONDARY'
 				onPress={handleGroupRemove}
 			/>

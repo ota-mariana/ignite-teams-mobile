@@ -48,8 +48,8 @@ export function Groups() {
       <Header />
 
       <HighLight
-        title="Times"
-        subtitle="Jogue com o seu time!"
+        title="Turmas"
+        subtitle="Jogue com a sua turma!"
       />
 
       {
@@ -61,7 +61,7 @@ export function Groups() {
             <GroupCard title={item} onPress={() => handleOpenGroup(item)} />
           )}
           contentContainerStyle={groups.length === 0 && { flex: 1 }}
-          ListEmptyComponent={() => <ListEmpty message="Não há times formados ainda. Bora criar um?" />}
+          ListEmptyComponent={() => <ListEmpty message="Não há turmas formadas ainda. Bora criar uma?" />}
         />
       }
 
