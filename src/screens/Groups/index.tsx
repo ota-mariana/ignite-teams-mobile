@@ -1,16 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
-import { FlatList } from 'react-native';
+import { useCallback, useState } from 'react';
+import { Alert, FlatList } from 'react-native';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
+
+import { groupsGetAll } from '@storage/group/groupsGetAll';
 
 import { Header } from '@components/Header';
 import { HighLight } from '@components/HighLight';
 import { GroupCard } from '@components/GroupCard';
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
-import { groupsGetAll } from '@storage/group/groupsGetAll';
+import { Loading } from '@components/Loading';
 
 import { Container } from './styles';
-import { Loading } from '@components/Loading';
 
 export function Groups() {
   const [groups, setGroups] = useState<string[]>([])
@@ -28,11 +29,13 @@ export function Groups() {
 
       const data = await groupsGetAll();
       setGroups(data);
-      setIsLoading(false);
 
     } catch(error) {
       console.log(error);
-    }
+      Alert.alert('Turmas', 'Não foi possível carregar turmas.');
+		} finally {
+			setIsLoading(false);
+		}
   }
 
   function handleOpenGroup(group: string) {

@@ -1,5 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { PLAYER_COLLECTION } from '@storage/storageConfig';
+
 import { playersGetByGroup } from './playersGetByGroup';
 
 export async function playerRemovedByGroup(playerName: string, group: string) {

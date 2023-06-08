@@ -5,6 +5,8 @@ import { Alert, FlatList, TextInput } from 'react-native';
 import { playerAddByGroup } from '@storage/player/playerAddByGroup';
 import { playersGetByGroupAndTeam } from '@storage/player/playersGetByGroupAndTeam';
 import { PlayerStorageDTO } from '@storage/player/PlayerStorageDTO';
+import { playerRemovedByGroup } from '@storage/player/playerRemovedByGroup';
+import { groupRemovedByName } from '@storage/group/groupRemovedByName';
 
 import { AppError } from '@utils/AppError';
 
@@ -16,11 +18,9 @@ import { Filter } from '@components/Filter';
 import { PlayerCard } from '@components/PlayerCard';
 import { ListEmpty } from '@components/ListEmpty';
 import { Button } from '@components/Button';
+import { Loading } from '@components/Loading';
 
 import { Container, Form, HeaderList, NumbersOfPlayers } from './styles';
-import { playerRemovedByGroup } from '@storage/player/playerRemovedByGroup';
-import { groupRemovedByName } from '@storage/group/groupRemovedByName';
-import { Loading } from '@components/Loading';
 
 type RouteParams = {
 	group: string;
@@ -72,12 +72,12 @@ export function Players() {
 
 			const playersByTeam = await playersGetByGroupAndTeam(group, team);
 			setPlayers(playersByTeam);
-			setIsLoading(false);
 
 		} catch(error) {
 			console.log(error);
 			Alert.alert('Pessoas', 'Não foi possível carregar as pessoas do time.');
-			;
+		} finally {
+			setIsLoading(false);
 		}
 	}
 
